@@ -45,6 +45,10 @@ public class CandidateServiceRepository {
 		return candidateResponse;		
 	}
 	
+	public void deleteCandidate(int candidateId){
+		candidateRepository.delete(candidateId);
+	}
+	
 	@PostConstruct
 	private List<CandidateResponse> populateCandidates() {
 		List<CandidateResponse> candidates = new ArrayList<CandidateResponse>();

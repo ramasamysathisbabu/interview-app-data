@@ -4,6 +4,7 @@ import java.util.List;
 import com.candidate.service.CandidateServiceRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,11 @@ public class CandidateController {
 	@PutMapping("/candidates/{id}")
 	public CandidateResponse updateCandidate(@PathVariable String id, @RequestBody CandidateRequest candidateRequest){
 		return candidateService.updateCandidate(Integer.valueOf(id), candidateRequest);
+	}
+	
+	@DeleteMapping("/candidates/{id}")
+	public void deleteCandidate(@PathVariable String id){
+		candidateService.deleteCandidate(Integer.valueOf(id));
 	}
 	
 }
