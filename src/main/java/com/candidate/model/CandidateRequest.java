@@ -1,23 +1,58 @@
 package com.candidate.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class CandidateRequest {
+@Table(name = "candidaterequest")
+public class CandidateRequest implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int candidateId;
-	private String prefix;	
+	
+	@Column(name = "prefix")
+	private String prefix;
+	
+	@Column(name = "firstName")
 	private String firstName;
+
+	@Column(name = "middleName")
 	private String middleName;
+	
+	@Column(name = "lastName")
 	private String lastName;
+	
+	@Column(name = "phoneNumber")
 	private String phoneNumber;
+	
+	@Column(name = "emailAddress")
 	private String emailAddress;
+	
+	@Column(name = "roleApplied")
 	private String roleApplied;
+	
+	@Column(name = "technicalStack")
 	private String technicalStack;
+	
+	@Column(name = "interviewer")
 	private String interviewer;
+	
+	@Column(name = "interviewScheduleDate")
 	private String interviewScheduleDate;
+	
+	@Column(name = "yearsOfExperience")
 	private int yearsOfExperience;
 	
 	public int getCandidateId() {
