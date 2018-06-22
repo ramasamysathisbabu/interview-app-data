@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +20,8 @@ public class CandidateRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name="candidateSequence", sequenceName="candidatId_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="candidateSequence")
 	private int candidateId;
 	
 	@Column(name = "prefix")
