@@ -20,7 +20,9 @@ public class CandidateServiceRepository {
 	public List<CandidateResponse> getCandidates(){
 		List<CandidateResponse> candidateResponses = new ArrayList<CandidateResponse>();
 		
-		for (CandidateRequest candidateRequest : candidateRepository.findAll()){
+		Iterable<CandidateRequest> candidatesFromDb = candidateRepository.findAll();
+		
+		for (CandidateRequest candidateRequest : candidatesFromDb){
 			CandidateResponse CandidateResponse = convertCandidateEntityToResponse(candidateRequest);
 			candidateResponses.add(CandidateResponse);
 		}
