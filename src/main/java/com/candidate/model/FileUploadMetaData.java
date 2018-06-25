@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class FileUploadMetaData {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private long id;
+	private Integer id;
 
 	@Column(name = "name")
 	private String name;

@@ -1,9 +1,6 @@
 package com.candidate.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,15 +11,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.candidate.model.FileUploadRepository;
 import com.candidate.model.FileUploadMetaData;
+import com.candidate.model.FileUploadRepository;
 
 /** A rest controller provides api to upload single file as post request and get the uploaded files as an get request*/
 @RestController
@@ -80,6 +81,25 @@ public class DocumentUploadController {
 		return fileMetaData;
 	}
 
+	/**
+	 * Rest endpoint api to download file
+	 * @return
+	 */
+	@RequestMapping(value = "/candidate/download/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getDownloadData(@PathVariable String id) throws Exception {
+
+		FileUploadMetaData fileMetaData = fileUploadMetaData.getOne(Integer.valueOf(id));
+	    byte[] output = fileMetaData.getFileContent();
+
+	    HttpHeaders responseHeaders = new HttpHeaders();
+	    responseHeaders.set("charset", "utf-8");
+	    responseHeaders.setContentType(MediaType.valueOf("text/html"));
+	    responseHeaders.setContentLength(output.length);
+		responseHeaders.set("Content-disposition", "attachment; filename=" + fileMetaData.getName());
+
+	    return new ResponseEntity<byte[]>(output, responseHeaders, HttpStatus.OK);
+	}
+	
 	/**
 	 * Files will get saved to file system and database
 	 * @param files
