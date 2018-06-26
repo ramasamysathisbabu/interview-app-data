@@ -75,7 +75,7 @@ public class DocumentUploadController {
 	 * Rest endpoint api to get uploaded files 
 	 * @return
 	 */
-	@GetMapping(value = "/candidate/getFileUploadMetaData")
+	@GetMapping(value = "/candidates/getFileUploadMetaData")
 	public List<FileUploadMetaData> fileUploadMetaData() {
 		List<FileUploadMetaData> fileMetaData = fileUploadMetaData.findAll();
 		return fileMetaData;
@@ -85,7 +85,7 @@ public class DocumentUploadController {
 	 * Rest endpoint api to download file
 	 * @return
 	 */
-	@RequestMapping(value = "/candidate/download/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/candidates/download/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getDownloadData(@PathVariable String id) throws Exception {
 
 		FileUploadMetaData fileMetaData = fileUploadMetaData.getOne(Integer.valueOf(id));
