@@ -1,5 +1,6 @@
 package com.candidate.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import com.candidate.model.CandidateResponse;
 @Service
 public class CandidateServiceRepository {
 
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	
 	@Autowired
 	private CandidateRepository candidateRepository;
 	
@@ -79,7 +82,7 @@ public class CandidateServiceRepository {
 			candidateResponse.setRoleApplied(candidateRequest.getRoleApplied());
 			candidateResponse.setTechnicalStack(candidateRequest.getTechnicalStack());
 			candidateResponse.setInterviewer(candidateRequest.getInterviewer());
-			candidateResponse.setInterviewScheduleDate(candidateRequest.getInterviewScheduleDate());
+			candidateResponse.setInterviewScheduleDate(dateFormat.format(candidateRequest.getInterviewScheduleDate()));
 			candidateResponse.setYearsOfExperience(candidateRequest.getYearsOfExperience());
 		}
 		return candidateResponse;

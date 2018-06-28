@@ -1,6 +1,7 @@
 package com.candidate.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "candidaterequest")
@@ -51,8 +54,9 @@ public class CandidateRequest implements Serializable{
 	@Column(name = "interviewer")
 	private String interviewer;
 	
+	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "interviewScheduleDate")
-	private String interviewScheduleDate;
+	private Date interviewScheduleDate;
 	
 	@Column(name = "yearsOfExperience")
 	private int yearsOfExperience;
@@ -123,11 +127,11 @@ public class CandidateRequest implements Serializable{
 	public void setYearsOfExperience(int yearsOfExperience) {
 		this.yearsOfExperience = yearsOfExperience;
 	}
-	public String getInterviewScheduleDate() {
+	public Date getInterviewScheduleDate() {
 		return interviewScheduleDate;
 	}
-	public void setInterviewScheduleDate(String interviewScheduleDate) {
+	public void setInterviewScheduleDate(Date interviewScheduleDate) {
 		this.interviewScheduleDate = interviewScheduleDate;
 	}
-	
+
 }
