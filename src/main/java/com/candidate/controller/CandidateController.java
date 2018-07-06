@@ -1,9 +1,9 @@
 package com.candidate.controller;
 
 import java.util.List;
-import com.candidate.service.CandidateServiceRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.candidate.model.CandidateRequest;
 import com.candidate.model.CandidateResponse;
-import com.candidate.service.CandidateService;
+import com.candidate.service.CandidateServiceRepository;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/interview")
 @RestController
 public class CandidateController {
